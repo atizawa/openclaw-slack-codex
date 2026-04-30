@@ -1,0 +1,7 @@
+.env
+config/*
+!config/openclaw.base.json
+workspaces/*
+!workspaces/channels.conf.sample
+state/*
+!state/.gitkeep

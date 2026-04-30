@@ -1,0 +1,41 @@
+{
+  "channels": {
+    "slack": {
+      "enabled": true,
+      "mode": "socket"
+    }
+  },
+  "agents": {
+    "defaults": {
+      "model": {
+        "primary": "codex-cli/gpt-5.5"
+      },
+      "cliBackends": {
+        "codex-cli": {
+          "command": "codex",
+          "args": [
+            "exec",
+            "--json",
+            "--color",
+            "never",
+            "--sandbox",
+            "danger-full-access",
+            "-c",
+            "service_tier=\"fast\"",
+            "--skip-git-repo-check"
+          ],
+          "resumeArgs": [
+            "exec",
+            "resume",
+            "{sessionId}",
+            "-c",
+            "sandbox_mode=\"danger-full-access\"",
+            "-c",
+            "service_tier=\"fast\"",
+            "--skip-git-repo-check"
+          ]
+        }
+      }
+    }
+  }
+}

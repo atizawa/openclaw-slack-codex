@@ -1,0 +1,29 @@
+services:
+  openclaw:
+    build: .
+    container_name: openclaw
+    restart: unless-stopped
+    ports:
+      - "18789:18789"
+    volumes:
+      - ./config:/home/node/.openclaw
+      - ./workspaces:/home/node/.openclaw/workspaces-source:ro
+      - ./state:/home/node/.openclaw/state
+      - codex-auth:/home/node/.codex
+      - plugin-deps:/home/node/.openclaw/plugin-runtime-deps
+    environment:
+      # Avoid Codex CLI's bwrap sandbox inside Docker. Filesystem scope is
+      # enforced by the container mounts above; workspaces are mounted read-only.
+      CODEX_SANDBOX_MODE: danger-full-access
+    env_file:
+      - .env
+    deploy:
+      resources:
+        limits:
+          memory: 2g
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+volumes:
+  codex-auth:
+  plugin-deps:

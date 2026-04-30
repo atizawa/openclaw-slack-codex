@@ -1,0 +1,6 @@
+# Workspace to Slack channel mapping
+# Format: workspace-name=CHANNEL_ID
+# Example: my-project=C0123456789
+#
+# workspace-name must match a directory in workspaces/
+# Channel ID: Slackでチャンネル名を右クリック → チャンネル詳細 → 最下部に表示
